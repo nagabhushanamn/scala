@@ -1,0 +1,859 @@
+
+
+---------------------------------------------------------------------------------
+scala - data types
+---------------------------------------------------------------------------------
+
+
+who validates data-types ?
+
+    - compiler ==> Statically Typed Language  e.g java,scala
+    - runtime-environment  ==> Dynamically Typed language e.g javascript,Python
+
+
+Ref:
+https://docs.scala-lang.org/resources/images/tour/unified-types-diagram.svg
+
+Ref:
+https://docs.scala-lang.org/resources/images/tour/type-casting-diagram.svg
+
+E.x
+
+val x:Int =23456
+var y: Long =7483
+val z: Char ='Z'
+val u:Unit=()
+
+val e=new Char('Z')  // error, we cant use 'new' with value classes
+val v:Int = null     // error, value cannot be null
+
+-implicit conversion example
+
+val i:Int =10
+val d:Double=5.5
+val r=i+d
+
+
+val s:String=new String("scala");
+val s:String=null;
+
+
+
+---------------------------------------------------------------------------------
+scala - Type Inference
+---------------------------------------------------------------------------------
+
+
+    - detecting the types
+
+val i = 5+3    =>infered-type: Int
+val d = 5+3.0  =>infered-type: Double
+val s = "text" =>infered-type: String
+
+
+def func(x) = x+4      // error , becoz, the function parameters must require Type
+def func(x:Int) = x+4  =>infered-return-type: Int , i.e return type infered as Int 
+
+
+---------------------------------------------------------------------------------
+key points
+---------------------------------------------------------------------------------
+
+- Scala is a statically typed language.
+- Scala has a unified type system. Every Scala class rolls up to Any.
+- We can further classify Scala type system into two categories.
+    Value Classes (AnyVal), Reference Classes (AnyRef)
+- The nine fundamental value types are
+    Double, Float, Long, Int, Short, Byte, Char, Boolean, Unit
+- You cannot use new keyword to instantiate value classes.
+- The new keyword is only allowed for reference classes.
+- Most of the classes that you will be creating should be a reference class. 
+  However, you can also create value classes.
+- We use the unit type as a return type of a function that doesnot return a meaningful value.
+- The value class hierarchy is flat, they all are a subclass of AnyVal.
+- Implicit conversion is one of the key features of Scala types.
+- The Null is the child class of every Reference class, so we can assign null to any reference class.
+- The Nothing is the child class of every Scala class including value classes and reference classes.
+- We cannot instantiate the Nothing, but it has some other purpose.
+- You can't Instantiate a value class without initializing it with a valid value other than Null and Nothing.
+- Scala has a built-in type inference mechanism which allows the programmer to omit type annotations in most of the cases.
+
+
+
+
+---------------------------------------------------------------------------------
+scala - Operators
+---------------------------------------------------------------------------------
+
+
+    - scala dosent have any operator
+
+    - scala pure OO language
+
+
+   Ref: 
+   https://www.scala-lang.org/api/current/scala/Int.html
+
+
+    - In Scala, operators are methods.
+
+
+    How do we call these methods ?
+
+
+    val i=10;
+    i._(5)
+    i.*(2)
+    i.compare(5)
+
+    // or
+
+    i + 5
+    i * 2
+    i > 2
+    i compare 15
+
+    i to 10
+
+
+    imp-Note:
+    Every value in scala is an Object
+    Every method in Scala is an Operator
+
+
+
+
+    Operators/Methods taking single operator
+
+    e.g
+
+    val i=10;
+    i.add(5)
+
+    i + 5
+
+    <object> <method> <parameter>
+
+
+
+
+
+    what if 
+
+    -> we have more than one input parameter
+    -> we dont have any imput parameter
+
+
+        <object> <method> <parameter>
+
+        <object> <method> (<parameter>1 <parameter>1)
+
+        e.g
+
+        1 to (10,2)
+
+        val s="scala"
+        s toUpperCase
+
+
+
+Final-note:
+
+    - Oerators in scala are method calls
+    - Methods in Scala are operators
+
+
+
+---------------------------------------------------------------------------------
+scala - Functions
+---------------------------------------------------------------------------------
+
+
+
+    syntax:
+
+
+    def functionName([<parameterName>:<type>[,...]]):[return type]={
+        function body
+        return [expr]
+    };
+
+
+    e.g
+
+    def myMax(x:Int,y:Int):Int={
+        if(x>y)
+         return x;
+        else
+         return y;
+    }
+
+
+    1. semicolon is optional
+
+        def myMax(x:Int,y:Int):Int={
+            if(x>y)
+            return x
+            else
+            return y
+        }
+
+    2. Return keyword is optional
+
+        def myMax(x:Int,y:Int):Int={
+            if(x>y)
+            x
+            else
+            y
+        }
+    
+        def myMax(x:Int,y:Int):Int={
+            if(x>y) x else y
+        }
+
+    3. Curly braces for a single line function body is optional
+    4. Return type is optional
+
+        def myMax(x:Int,y:Int)=if(x>y)x else y
+
+        def myMax(x:Int,y:Int)={if(x>y)x else y}   
+
+    5. dont leave the "=" symbol
+
+
+
+
+
+
+
+
+    def hWorld()=println("Hello World!")
+
+    val h=hWorld()
+    val h=hWorld
+
+    hint : Keep paranthesis when the function has side-effect
+
+    can i remove paranthesis?
+
+    def hWorld=println("Hello World!")
+    val h=hWorld
+
+    hint : Remove paranthesis when the function dosent have a side-effect
+
+
+
+
+
+---------------------------------------------------------------------------------
+key points
+---------------------------------------------------------------------------------
+ -You learned the syntax to define a function.
+ -Semicolon is optional in Scala.
+ -Scala compiler expects one expression per line.
+ -If you want to have multiple expressions on a single line, separate them using a semicolon.
+ -It is recommended to enclose the multiline expression in a pair of parenthesis.
+ -The return statement is optional. The recommendation is to avoid using it.
+ -You can also skip the curly braces for a single line function body.
+ -The return type of a function is optional if Scala compiler can infer the return type.
+ -Never forget the = symbol before a function body.
+ -The empty parenthesis is optional for a parameter less function
+ -Use empty parenthesis for a function that has a side effect.
+ -Do not use empty parenthesis for a pure function.
+
+
+
+
+---------------------------------------------------------------------------------
+Anonymous Functions / Function Literals / Lambda Expression
+---------------------------------------------------------------------------------
+
+
+- Functions are first class citizens
+
+
+    We can assign functions to a value.
+    We can pass them as a parameter.
+    We can return them from a higher order function.
+
+
+                                  
+    //String value
+    val s = "Hello World!"
+    // Integer value
+    val l = 5       
+    val l:Long = 5
+    //Another alternative for enforcing the data type is this.
+    val l = 5:Long        
+
+
+
+     //Compare it with standard def syntax for a Scala function
+    def functionName ([<parameterName> :<type> [, ....]]) : [return type] = {
+        <function body> 
+        return [expr]
+    }          
+    
+    is same as 
+
+    ([<parameterName> :<type> [, ....]])  =>  {   
+        <function body> 
+        return [expr] 
+    } : [return type]
+
+
+    val f=(x:Int)=>{x+5}
+    val f=(x:Int)=>{x+5}:Int
+
+    val f:Int=>Int=(x:Int)=>{x+5} 
+
+
+
+    Q. Create a function value that takes two parameters.
+
+    An Integer
+    A String
+
+    The function should return another string by concatenating the string around the integer.
+    Here is an example of input and output for your better understanding.
+
+    e.g
+
+    myFun(5,"-") 
+    //should return -5-  
+
+
+
+
+
+    Soluation:
+
+    val myFun:(Int, String) => String = (x:Int, s:String) => { s + x + s }:String      
+    //
+    val myFun = (x:Int, s:String) => { s + x + s }
+
+
+
+
+    Why do we need Scala function literal?
+
+
+     - pass it to a higher order functions
+     - return it from higher order functions
+
+
+    Ex.1
+    val customers = List( "donald", "angela","larry","narendra", "vladimir")    
+    customers.map((x:String) => x.capitalize)   
+    
+    Ex.2
+    val data = List(-250, 75, 145 ,222 ,-80 ,-140 , 170 , 85 , 122, 250)   
+    data.map( (x:Int) => 1d*(x-data.min)/(data.max-data.min)*1d)   
+
+
+
+    
+
+---------------------------------------------------------------------------------
+Scala - Placeholder Syantax
+---------------------------------------------------------------------------------
+
+    e.g
+
+    val r = 1 to 10
+
+    r.map((x:Int) => x + 10)   
+    r.map(x => x + 10)   
+    r.map(_+10)
+
+    r.reduce((x:Int,y:Int) => x + y )
+    r.reduce((x,y) => x + y )
+    r.reduce(_+_)
+    r.reduce((x,y)=>x+y/x min y)
+    r.reduce(_+_/_ min _)    ==> error , becoz number params must match number of _
+
+
+    r.filter(x=>x>5)
+    r.filter(_>5)
+
+
+
+---------------------------------------------------------------------------------
+Scala - Function value
+---------------------------------------------------------------------------------
+
+
+val f=(x:Int)=>x+10
+
+scala replaces it with below code
+
+var f=new Function1[Int,Int]{
+    def apply(x:int):Int=x+10
+}
+
+
+
+---------------------------------------------------------------------------------
+Scala - Local Function
+---------------------------------------------------------------------------------
+
+
+Local functions are like private methods
+
+
+import scala.io.Source
+import scala.io.Source._
+def getErrors(fileName: String) = {
+                                
+    def isError(line :String) = {
+        if (line.contains("error")) true else false
+    }   
+                                
+    val f = Source.fromFile(fileName)
+        for (l <- f.getLines() if isError(l)) yield l  
+}
+getErrors("/root/mylog.dat") foreach println     
+
+
+
+
+
+
+---------------------------------------------------------------------------------
+Scala - Higher Order Functions
+---------------------------------------------------------------------------------
+
+// #1
+
+    def intDecorator(x:Int,f:(Int)=>String)=f(x)
+    intDecorator(5,(y:Int)=>"["+y+"]")
+
+    try,
+    sumx(3,5,(x,y)=>x*x*x + y*y*y)
+
+
+#2
+
+    def greetSomeone(prefix:String)={
+        (name:String)=>println(prefix+" "+name)
+    }
+
+    val hiSomeone=greetSomeone("Hi")
+    hiSomeone("Nag")
+    greetSomeone("Hi")("Nag");
+
+
+
+#3
+
+    val f1=(x:Int)=>(y:Int)=>Math.sqrt(x+y);
+    // or
+    val f1:Int=>(Int=>Double)=(x:Int)=>(y:Int)=>Math.sqrt(x+y)
+
+
+
+    val fs:String => (String => String) = (prefix: String) => (s: String) => prefix + " " + s
+
+    |
+    |
+    V
+
+    val fs = (prefix: String) => {(s: String) => prefix + " " + s  }
+
+
+
+
+---------------------------------------------------------------------------------
+Scala - Variable length argument
+---------------------------------------------------------------------------------    
+
+
+
+def echo(s:String*) = s foreach println    
+                    
+echo("One","Two","Three")     
+echo("One","Two","Three", "Four", "Five") 
+
+
+
+---------------------------------------------------------------------------------
+Scala - Named Arguments  & Default values 
+---------------------------------------------------------------------------------    
+
+                         
+def doSomething(f: String  => Unit, s:String) = f(s)     
+           
+doSomething(x =>println("[" + x + "]") , "Hi There!")  
+doSomething("Hi There!", x =>println("[" + x + "]") )   ==> error 
+doSomething(s="Hi There!", f = x =>println("[" + x + "]"))
+
+
+def doSomething(f: String  => Unit=println, s:String) = f(s)   
+doSomething(s="Hi There!")  
+
+
+
+-------------------------------------------------------------------------------
+Scala - Partially Applied Functions & Function currying
+-------------------------------------------------------------------------------
+
+
+def div(x:Double,y:Double)=x/y
+
+val newF=div(1,_:Double)
+
+
+e.g
+
+
+    A simple sum like this 1 + 2 + 3 + 4 + 5 = 15
+    A sum of squares like this 1*1 + 2*2 + 3*3 + 4*4 + 5*5 = 55
+    A sum of cubes like this 1*1*1 + 2*2*2 + 3*3*3 + 4*4*4 + 5*5*5 = 255
+
+
+                                                     
+    def sumOfX(f:Int => Int, a:Int, b:Int):Int = 
+    if (a>b) 0 else f(a) + sumOfX(f, a+1, b)      
+
+
+                                                                   
+    sumOfX(x=>x, 1,5)       
+    sumOfX(x=>x*x, 1,5)   
+    sumOfX(x=>x*x*x, 1,5)    
+
+     val sumOfCubes = sumOfX(x=>x*x*x, _:Int,_:Int)
+    sumOfCubes(1,5)   
+
+                                                                   
+    def applySums(f: (Int, Int) => Int) = 
+    println("I am applying sum of 1 to 5 and the answer is " + f(1,5))   
+
+
+    e.g
+                                                                          
+    def sum(x:Int, y:Int, z:Int) = x+y+z
+    val s3=sum(_:Int, _:Int, _:Int)      
+    // or
+    val s4 = sum _      
+
+
+
+    Function Currying in Scala:
+
+
+     def sumOfX(f:Int => Int, a:Int, b:Int):Int = 
+     if (a>b) 0 else f(a) + sumOfX(f, a+1, b)   
+
+                                                                                   
+    def sumOfX(f:Int => Int)(a:Int, b:Int):Int = 
+    if (a>b) 0 else f(a) + sumOfX(f, a+1, b)   
+
+                                                                                 
+    sumOfX(x=>x*x*x)(1,5)   
+    val si = sumOfX(x=>x*x*x)_  
+    val si = sumOfX{
+        x=>println("Cubing")
+        x*x*x
+    }_                                      
+
+
+                                 
+
+
+-------------------------------------------------------------------------------
+Scala - Control Abstraction
+-------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------
+ Scala if else
+-------------------------------------------------------------------------------
+
+                            
+    def test(i:Int):String = {
+        var s:String = null
+        if(i==1)
+            s = "One"
+        else
+            s = "Something else"
+        return s
+    }           
+
+
+    in FP
+
+                        
+    def testF(i:Int) = 
+        if(i==1) "One" else "Something else"                                      
+               
+    def testF(i:Int) = 
+        if(i==1) "One" 
+        else if(i==2) "two"
+        else if(i==3) "three"
+        else "Something else"   
+
+
+    val s = if(i==1) println("One") else println("Something else")        
+    val s = if(i==1) 1 else println("Something else")
+
+
+
+-------------------------------------------------------------------------------
+ Scala match-case
+-------------------------------------------------------------------------------
+
+ def matchX(x:Int) = {
+        x match {
+            case 1 => println("Case One")
+            case 2 => println("Case Two")
+            case 3 => println("Case Three")
+            case _ => println("Case Default Case")
+        }
+    }         
+
+
+def matchX(x:Int) = {
+        x match {
+            case 1 => { println("Case One”)
+                        println("Print it again - Case One")
+                      }
+            case 2 => println("Case Two")
+                      println("Print it again - Case Two")
+            case 3 => println("Case Three")
+            case _ => println("Case Default Case")
+        }
+    }               
+
+
+def matchX(x:Int) = {
+        x match {
+            case 1 => "Case One"
+            case 2 => "Case Two"
+            case 3 => "Case Thre"
+            case _ => "Case Default Case"
+        }
+    }         
+
+
+val x = 2
+val s = x match {
+    case 1 => "Case One"
+    case 2 => "Case Two"
+    case 3 => "Case Three"
+    case _ => "Case Default Case"
+    }
+println(s)          
+
+
+-------------------------------------------------------------------------------
+ Scala - Custom Loops in Scala
+-------------------------------------------------------------------------------
+
+
+
+import scala.language.reflectiveCalls
+def repeat(body: => Unit)= new {
+    def until(condition: => Boolean) = {
+        do{
+            body
+        }while(!condition)
+    }
+    until _
+}     
+
+
+var i = 0
+repeat{
+        println("Values of i is " + i )
+        i = i + 1
+} until(i>3) 
+
+
+-------------------------------------------------------------------------------
+Higher Order Control Abstractions
+-------------------------------------------------------------------------------
+
+
+Data abstraction
+Control abstraction
+
+e.g
+
+Open the File.
+Read it line by line.
+Perform some operations on each line.
+Make sure the file is closed at the end.
+
+
+
+    withTextFile( fileLocation ) map ( doThisWork )                                           
+    
+    repeat( doThisWork ) until ( condition )                                          
+
+
+
+-------------------------------------------------------------------------------
+Higher Order Controls in Collections
+-------------------------------------------------------------------------------
+
+
+val l = List("india", "USA", "UK", "china", "russia")
+
+l.foreach(println)
+
+def f1(s: String) = {
+    println("Printing " + s)
+    "Returning " + s
+}          
+
+l.map(f1)
+
+def f3(s:String) = s.split(" ") 
+
+val l = List("India is a multiparty democratic country, USA is two-party democratic country") 
+l.map(f3)
+l.flatMap(f3)
+l.withFilter( x =>x.startsWith("i")).map(x =>x.capitalize)
+
+
+
+
+-------------------------------------------------------------------------------
+For Comprehension
+-------------------------------------------------------------------------------
+
+
+for ( seq ) yield { expr } 
+
+for ( seq ) { expr }   
+
+for ( i <- 1 to 10 ) {
+    statement-1;
+    statement-2;
+}        
+
+val n = 1 to 5
+// n is a Range collection with ten elements.
+//Now I can iterate through this collection using a for Loop.
+for ( i<- n ) println(i)
+// You can remove the middleman and get a collection on the fly. 
+for ( i<- 1 to 5 ) println(i)                
+
+
+for ( country <- List("India","USA","China","Japan") ) {
+    country match {
+            case "India"  =>println("Delhi")
+            case "USA"    =>println("Washington D.C.")
+            case "Japan"  =>println("Tokyo")
+            case _        =>println("I don't know") 
+    }
+}    
+// or
+countries.foreach{ country =>
+    country match {
+        case "India"   =>println("Delhi")
+        case "USA"     =>println("Washington D.C.")
+        case "Japan"   =>println("Tokyo")
+        case _         =>println("I don't know") 
+    }
+}      
+
+
+
+
+for ( seq ) yield { expr }  
+
+
+val countries = List("India","USA","China","Japan")
+for ( country <-  countries ) yield {
+        country match {
+        case "India"   => "Delhi"
+        case "USA"     => "Washington D.C."
+        case "Japan"   => "Tokyo"
+        case _         => "I don't know"
+    }
+}           
+
+val capitals = for ( country <-  countries ) yield {
+    country match {
+        case "India"   => "Delhi"
+        case "USA"     => "Washington D.C."
+        case "Japan"   => "Tokyo"
+        case _         => "I don't know"
+    }
+}         
+
+
+for (i <- 1 to 3; j <- 1 to 2) println (s"i=$i  j=$j")
+
+for {   i <- 1 to 3 
+        j <- 1 to 2; if(j%2==0)
+        k <- 1 to 2
+    } println (s"i=$i  j=$j k=$k") 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+                                
+                     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

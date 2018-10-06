@@ -1,0 +1,14 @@
+
+
+development-environment setup
+------------------------------
+
+
+
+ 1. install JDK 8
+
+ 2. download intellij idea community edition
+
+      + install scala language plugin after launch
+
+

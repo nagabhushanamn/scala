@@ -1,0 +1,571 @@
+
+
+------------------------------------------------------------------------------
+what is FP?
+
+    1. FP is about writing software applications using only pure functions.
+    2. When writing FP code you only use immutable values — val fields in Scala.
+
+
+You can combine those two statements into this simple definition:
+
+Functional programming is a way of writing software applications
+using only pure functions and immutable values.
+
+------------------------------------------------------------------------------
+What is a pure function?
+------------------------------------------------------------------------------
+
+    What is a function?
+
+        https://www.mathsisfun.com/sets/function.html
+
+
+#1
+The output of a pure function depends only on 
+(a) its input parameters and 
+(b) its internal algorithm.
+
+#2
+A pure function has no side effects, meaning that it does not read/write anything
+from the outside world
+
+    i.e
+    It does not read from a file, web service, UI, or database,
+    and does not write anything either.
+
+
+Ex-1:
+
+    Math.sqrt(4.0)          
+
+    1. The Input solely determines the output 
+    2. The function doesn't change its input 
+    3. The function doesn't do anything else except computing the output
+
+    If a function qualifies on these three conditions, it is a pure function. 
+    
+
+
+Is there an easy method to validate the purity of a function? 
+Yes. Test it for the 'referential transparency'.
+
+------------------------------------------------------------------------------
+What is referential transparency?
+------------------------------------------------------------------------------
+
+    A function is said to be referentially transparent 
+    if we can replace it with a corresponding value without changing the program's behaviour. 
+
+    Can You do this ?
+
+        Replace, Math.sqrt(4.0) with 2.0 
+
+    Yes, because Math.sqrt(4.0) will always return 2.0 as log as input is 4.0
+
+
+Another Ex.
+
+    var g = 10
+    def rt(i:Int):Int = {
+        g = i+g; 
+        return g
+    }
+    
+    val v1 = rt(5)
+    val v2 = rt(5)            
+
+
+    The rt is dependent upon global variable 'g' So, 
+        - the output is not solely determined by the input parameter.
+    It modifies an external variable, so it has a side effect.
+    So, the referential transparency fails for this function and It's not a pure function.
+
+
+
+A pure function follows these rules.
+
+The output is only dependent on input parameter values.
+The function doesn't modify the Input parameter values.
+The function doesn't have a side effect.
+
+
+------------------------------------------------------------------------------
+Why Pure function?
+------------------------------------------------------------------------------
+
+   My favorite benefits are:
+
+    • They’re easier to reason about 
+    • They’re easier to combine
+
+        e.g
+        val x = doThis(a)
+                 .thenThis(b)
+                 .andThenThis(c)
+                 .doThisToo(d)
+                 .andFinallyThis(e)
+
+    • They’re easier to test
+    • They’re easier to debug
+    • They’re easier to parallelize
+    • They are idempotent
+    • They offer referential transparency 
+    • They are memoizable
+    • They can be lazy
+
+
+
+
+------------------------------------------------------------------------------
+Summary:
+------------------------------------------------------------------------------
+
+Again,
+Functional programming is a way of writing software applications 
+using only pure functions and immutable values.
+
+To support that, pure function like this:
+
+• The output of a pure function depends only on 
+    (a) its input param- eters and 
+    (b) its internal algorithm.
+
+• A pure function has no side effects, 
+  meaning that it does not read anything from the outside world 
+  or write anything to the outside world.
+
+• As a result of those first two statements, 
+  if a pure function is called with an input parameter x an infinite number of times, 
+  it will always return the same result y.
+
+
+• The best FP code is like algebra
+
+• Pure functions and immutable values are easier to reason about
+
+• Immutable values make parallel/concurrent programming easier
+
+
+
+
+------------------------------------------------------------------------------
+What is a first-class Function?
+------------------------------------------------------------------------------
+
+    If you can treat a function as a value, it is a first-class function. 
+
+    1. You can assign it to a variable 
+    2. You can pass it as an argument to other functions 
+    3. You can return it as a value from other functions 
+
+    In Scala, all functions are first class functions by default
+
+------------------------------------------------------------------------------
+What is a Higher Order Function?
+------------------------------------------------------------------------------
+
+A function that does at least one of the following is a Higher Order Function.
+
+    1. Takes one or more functions as arguments.
+    2. Returns a function as its result.
+
+
+Ex-3:
+
+    def doubler(i:Int):Int = {return i * 2}        
+    //Let's assign it to a variable.
+    val d = doubler(_)
+    // Now you can use the variable d as it is a function.
+    d(5)
+    d(3)                                   
+
+    val r = 1 to 10
+
+    r.map(double)
+    r.map(d)
+
+
+
+All functions in Scala are first class. 
+So, you can do following things with a function in Scala.
+
+Assign it to a variable.
+Pass it as an argument to other functions.
+Return it as a value from other functions.         
+                  
+
+A Function that does at least one of the following is a Higher Order Function.
+
+Takes one or more functions as arguments
+Returns a function as its result
+
+
+Scala allows you to create higher order functions. 
+
+
+------------------------------------------------------------------------------
+What is an Anonymous Function?
+------------------------------------------------------------------------------
+
+Ex.
+
+def doubler(i:Int):Int = {return i * 2}        
+
+or
+
+val d=(i:Int) => { i*2 } :Int 
+
+
+What is the purpose of an anonymous function?
+
+    - to create an inline function for a one-time usage
+
+Ex:
+
+Before:
+
+def getOps(c:Int) = (i:Int) => {
+    val doubler = (x:Int) => { x * 2 }
+    val tripler = (x:Int) => { x* 3 }
+    if(c > 0)   doubler(i)
+    else  tripler(i)
+}               
+
+After:
+
+def getOps2(c:Int) = (i:Int) => {
+    if(c > 0)   { i * 2 }
+    else  {i * 3 }
+}    
+
+
+------------------------------------------------------------------------------
+Why ? or benifits of all these ?  of HOF
+------------------------------------------------------------------------------
+
+Abstraction is the main benefit of HO functions.
+Abstraction makes the application easily extendable.
+When developing with a higher level of abstraction, 
+you communicate the behaviour and less the implementation.
+
+
+Ex.
+
+ var customers = Array("Mike", "Zara","Abdul","Peter") 
+
+  for ( i<- 0 to customers.length-1) {
+    println("Hi " + customers(i));
+  }   
+
+ def remindPayment(x: String) = println("Payment reminder for " + x)   
+
+  for ( i<- 0 to customers.length-1) {
+    remindPayment(customers(i));
+  }      
+
+
+If you design this using a higher order function. Your final code will look like this.
+
+  def forEach(a: Array[String], f:String => Unit) = {
+        var i=0;
+            for ( i<- 0 to a.length-1) {
+                f(a(i));
+            }
+    }       
+
+  customers foreach remindPayment     
+
+
+
+------------------------------------------------------------------------------
+What is immutability ?
+------------------------------------------------------------------------------
+
+ => Unable to change
+
+
+Scala has two types of variables.
+
+    var
+    val
+
+ Ex.
+
+     var s = "Hello World!"
+    //After initializing it once, you can change it later.
+    s = "Hello Scala!"       
+
+    val v = "You can't change me."
+    //Let me try to reassign it.
+    v = "Let me try."    
+
+    Immutability  = program using constants 
+
+
+Why Immutable?    
+
+
+    How can we program without a variable?
+    What are the benefits?
+
+    two advantages.
+
+
+    1.Immutable helps to adopt mathematical approach
+
+
+        3 + 1 = 4      or   sum(3, 1) returns 4       
+
+
+    2. Immutable helps us to avoid various problems
+
+        
+        the immutable objects are more thread safe than the mutable objects
+
+        We often use immutability in data engineering process.
+
+        e.g
+        You are requested to perform a data quality operation. You want to achieve two things.
+
+        1.Remove the records where the date column is blank.
+        2.Change the date format of all rows into a consistent format and time zone.
+
+
+        The immutable approach helps us to simplify the solution and avoid many problems.
+        Even the human errors. That's why while learning Scala, 
+        we will be using val and avoid var. 
+
+
+    How can we program without a variable?
+
+    def iFactorial(n:Int):Int = {
+        var i=n
+        var f=1
+            while (i>0) {
+                f = f * i
+                i = i -1
+            }
+        return f
+    }            
+
+    So, this function takes a positive number n and returns a factorial value. 
+    I am using two vars in this function. Now, I have two questions for you.
+
+        Is this a pure function?
+        Can you rewrite this function without using vars?
+
+
+
+    What is Recursion?
+
+    def rFactorial(n: Int): Int = {
+        if (n <= 0) 
+            return 1
+        else
+            return n * rFactorial(n-1)
+    }      
+
+
+    Programming with immutable values.
+
+    What is a Trail recursion?
+
+    Is a loop better than a recursion?
+
+    How to implement tail recursion?
+
+
+    def Factorial(i:Int):Int = {
+        println("You called Factorial for " + i)
+        def  tFactorial(n: Int, f:Int): Int = {       
+           if (n <= 0)  
+                f
+            else  
+                tFactorial(n-1, n*f)      
+        }    
+        return  tFactorial(i,1)
+    }
+
+
+------------------------------------------------------------------------------
+Scala Statements vs Expressions
+------------------------------------------------------------------------------
+
+def myResult(m:Int) = {
+        var r = ""
+        if(m >= 50) 
+            r = "passed"; 
+        else
+            r = "failed";
+        println(r)
+    }
+    
+myResult(65)   
+
+Scala doesn't have statements but only expressions.
+
+Why Scala supports expressions? for Immutability
+
+def myResult(m:Int) = if(m >= 50) "passed" else "failed"  
+
+
+
+------------------------------------------------------------------------------
+Strict and Lazy Evaluations
+------------------------------------------------------------------------------
+
+    def Factorial(i:Int):Int={
+        println("You called Factorial for "+i)
+        def tFactorial(n:Int, f:Int):Int={
+            if(n <=0)
+                f
+            else
+                tFactorial(n-1, n*f)
+        }
+        return tFactorial(i,1)
+    }
+
+    val s = Factorial(15)/Factorial(11)  
+    println(s)
+    println(s)    
+
+
+    Strict evaluations in function parameters:
+    ----------------------------------------
+
+    def twice(i:Int ) = {
+        println("We haven't used i yet")
+        i + i
+    }     
+    twice(Factorial(15)/Factorial(11) )  
+
+
+    Strict evaluations in higher order functions
+    ----------------------------------------
+
+    def twice(f: => Int ) =  {
+        println("We haven't used f yet")
+        f + f
+    }     
+    twice({ Factorial(15)/Factorial(11) })
+
+
+     def twice(f: => Int ) =  {
+        val i = f
+        println("We haven't used i yet")
+        i + i
+    }       
+    twice({ Factorial(15)/Factorial(11) })
+
+
+    Lazy evaluations in Scala
+    --------------------------------------
+
+
+    lazy val l = Factorial(15)/Factorial(11) 
+    println(l)      
+
+
+
+    Lazy evaluations in higher order Scala functions
+    ------------------------------------------------
+
+    def twice(f: => Int ) =  {
+        lazy val i = f
+        println("We didn't use i yet")
+        i + i
+    }        
+
+    twice(Factorial(15)/Factorial(11))
+
+
+------------------------------------------------------------------------------
+    What is a Scala closure?  
+------------------------------------------------------------------------------
+
+
+def getHike(salary:Double) = salary * p/100   
+
+
+
+val p =10
+def getHike(salary:Double) = salary * p/100 
+
+
+What if the value of free variable changes?
+//I defined the value of p as 10.
+var p =10
+//Then I define this closure.
+def getHike(salary:Double) = salary * p/100 
+
+
+Why do we need Closure?
+
+val l = (1001 to 1005).toList      
+l.map(getHike)  
+
+
+def getHike = (empID:Int) => {
+    //Load employee and their current salary
+    val e:Map[Int,Double] = Map(1001->35000.00, 
+                                1002->43000.00, 
+                                1003->28000.00, 
+                                1004->54000.00, 
+                                1005->17000.00)
+    // Some logic to derive percentage for each employee
+    val p:Map[Int,Double]  = Map(1001 -> 10.00, 
+                                1002->12.00, 
+                                1003->7.50, 
+                                1004->6.80, 
+                                1005->20.00)
+    (empID, e(empID) * p(empID) /100.00) 
+}          
+
+
+
+-----------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+

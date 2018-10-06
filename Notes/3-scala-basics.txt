@@ -4,6 +4,12 @@
 scala - data types
 ---------------------------------------------------------------------------------
 
+types:
+
+
+    => simple/primitives  ==>values     e.g 12
+    => complex/references ==> objects   e.g person
+
 
 who validates data-types ?
 
@@ -13,6 +19,30 @@ who validates data-types ?
 
 Ref:
 https://docs.scala-lang.org/resources/images/tour/unified-types-diagram.svg
+
+
+Integral
+---------
+   8-bit  ==> Byte
+   16-bit ==> Short
+   32-bit ==> Int
+   64-bit ==> Long
+Real
+------
+    Float ==> 32-bit
+    Double ==> 64-bit
+Character
+---------
+    Char ==> 16-bit
+Boolean
+----------
+    Boolean ==> 1 bit
+
+Unit  ==> similar to void in java
+--------------------------------
+    Unit ==> ()
+
+
 
 Ref:
 https://docs.scala-lang.org/resources/images/tour/type-casting-diagram.svg
@@ -44,7 +74,7 @@ scala - Type Inference
 ---------------------------------------------------------------------------------
 
 
-    - detecting the types
+    - detecting the types by compiler when we skip it
 
 val i = 5+3    =>infered-type: Int
 val d = 5+3.0  =>infered-type: Double
@@ -77,7 +107,6 @@ key points
 - We cannot instantiate the Nothing, but it has some other purpose.
 - You can't Instantiate a value class without initializing it with a valid value other than Null and Nothing.
 - Scala has a built-in type inference mechanism which allows the programmer to omit type annotations in most of the cases.
-
 
 
 

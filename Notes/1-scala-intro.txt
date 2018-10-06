@@ -21,7 +21,23 @@ What is the JDK/JVM?
 
 
  .java   ---> javac  ---> java-byte-codes  --->  JVM
- .scala  ---> scalac ---> java-byte-codes  --->  JVM
+
+
+    Limitations on java langugae
+
+        --> JDK 1.7 , ==> complele OO language
+        --> more verbose on syntax
+        --> concurrent/parallel appln --> multi-threading  ==> leads complex
+
+
+
+      advantages of of scala over java
+
+        --> concise code  thru FP
+        --> writing concurrent appln is easy
+
+
+    .scala  ---> scalac ---> java-byte-codes  --->  JVM
 
 --------------------------------------------------------------------------------
 
@@ -38,10 +54,12 @@ Scala Features
     - Extensible/Scalable language
     - The Scala ecosystem
 
+
     - The Scala ecosystem
 
     Big Data:
         'Apache Spark' is a leading open sourced platform for large scale data processing.
+
 
     High Throughput Messaging:
         'Kafka' is a high throughput distributed messaging system.
@@ -51,6 +69,7 @@ Scala Features
         'Akka' from Lightbend (formerly known as Typesafe) allows you to build highly concurrent and distributed systems.
         'Finagle' from Twitter allows you to create highly concurrent servers where the underlying APIs are protocol agnostic.
         'Spray' is a high throughput HTTP server.
+
 
     Frameworks:
         'Play' from Lightbend (formerly known as Typesafe) allows you to easily build scalable web applications.
@@ -67,3 +86,20 @@ Scala Features
 
 
 --------------------------------------------------------------------------------
+
+
+scala-language
+
+        --> easy to use
+
+            --> FP + OOP
+            --> static typing
+
+        --> perfomance
+
+            --> scala-compiler optimization with code
+            --> like Akka, spark , play, ...
+
+---------------------------------------------------------------------------------            
+
+

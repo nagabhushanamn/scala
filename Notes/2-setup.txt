@@ -4,11 +4,77 @@ development-environment setup
 ------------------------------
 
 
+---------------------------------------------------------------
 
  1. install JDK 8
 
+    ==> JRE ( Java Runtime Environment  ==> JVM )
+
+ 
  2. download intellij idea community edition
 
       + install scala language plugin after launch
 
 
+---------------------------------------------------------------      
+
+
+
+- build
+
+    - compile, test, package, deploy, .........................
+
+ - dependency management 
+
+
+
+Automation build tools
+
+
+for java-lang based build tools
+
+    - ANT  ( Another Neat Tool )
+    - Maven
+    - Gradle
+    - Ivy
+    - ...
+
+for scala 
+
+    - SBT ( Simple Build Tool )
+
+
+
+
+
+
+
+JVM languages
+
+
+    - java
+
+    - scala   --> statically typed FP + OOP
+    - groovy  --> dynamically typed
+    - kotlin  --> 
+
+
+
+
+
+
+development-envi  ( JDK )
+
+    -> editor
+    -> compiler
+    -> debugging tools
+    -> supported lib
+    -> JRE
+
+    java-compiler ==> java-byte-codes
+
+
+deployment-envi  ==> JRE   
+
+
+---------------------------------------------------------------   

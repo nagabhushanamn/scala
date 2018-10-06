@@ -6,9 +6,8 @@ scala - data types
 
 types:
 
-
-    => simple/primitives  ==>values     e.g 12
-    => complex/references ==> objects   e.g person
+    => values  
+    => references
 
 
 who validates data-types ?
@@ -22,26 +21,25 @@ https://docs.scala-lang.org/resources/images/tour/unified-types-diagram.svg
 
 
 Integral
----------
+----------------------
    8-bit  ==> Byte
    16-bit ==> Short
    32-bit ==> Int
    64-bit ==> Long
 Real
-------
+----------------------
     Float ==> 32-bit
     Double ==> 64-bit
 Character
----------
+----------------------
     Char ==> 16-bit
 Boolean
-----------
+----------------------
     Boolean ==> 1 bit
 
 Unit  ==> similar to void in java
---------------------------------
+--------------------------------------
     Unit ==> ()
-
 
 
 Ref:
@@ -63,11 +61,8 @@ val i:Int =10
 val d:Double=5.5
 val r=i+d
 
-
 val s:String=new String("scala");
 val s:String=null;
-
-
 
 ---------------------------------------------------------------------------------
 scala - Type Inference
@@ -110,14 +105,23 @@ key points
 
 
 
+
+
 ---------------------------------------------------------------------------------
 scala - Operators
 ---------------------------------------------------------------------------------
 
-
-    - scala dosent have any operator
+    - scala dosent have any operator, instead having methods
 
     - scala pure OO language
+
+    e.g
+
+    val i:Int=12;  
+    val j:Int=13;
+
+    i.+(j)
+
 
 
    Ref: 
@@ -152,18 +156,17 @@ scala - Operators
 
 
 
+
     Operators/Methods taking single operator
 
     e.g
 
     val i=10;
-    i.add(5)
+    i.+(5)
 
     i + 5
 
-    <object> <method> <parameter>
-
-
+    <object> <method/operator> <parameter>
 
 
 
@@ -175,7 +178,7 @@ scala - Operators
 
         <object> <method> <parameter>
 
-        <object> <method> (<parameter>1 <parameter>1)
+        <object> <method> (<parameter>1,<parameter>2)
 
         e.g
 
@@ -190,6 +193,16 @@ Final-note:
 
     - Oerators in scala are method calls
     - Methods in Scala are operators
+
+
+summary
+-----------
+
+data-types  ==> objects ( value | reference )
+operators   ==> methods
+
+
+
 
 
 
@@ -217,6 +230,8 @@ scala - Functions
          return y;
     }
 
+    
+
 
     1. semicolon is optional
 
@@ -226,6 +241,8 @@ scala - Functions
             else
             return y
         }
+
+
 
     2. Return keyword is optional
 
@@ -243,16 +260,11 @@ scala - Functions
     3. Curly braces for a single line function body is optional
     4. Return type is optional
 
+        def myMax(x:Int,y:Int)={if(x>y)x else y}  
         def myMax(x:Int,y:Int)=if(x>y)x else y
-
-        def myMax(x:Int,y:Int)={if(x>y)x else y}   
+         
 
     5. dont leave the "=" symbol
-
-
-
-
-
 
 
 
@@ -265,11 +277,19 @@ scala - Functions
 
     can i remove paranthesis?
 
-    def hWorld=println("Hello World!")
-    val h=hWorld
+    def getPI=3.14
+    getPI
 
-    hint : Remove paranthesis when the function dosent have a side-effect
+    hint : Remove paranthesis when the function dosent have a side-effects - convention
 
+
+        e.g side-effects
+
+            -> IO
+            -> N.W calls
+            
+
+            i.e if function executing impure functionality 
 
 
 
@@ -294,7 +314,7 @@ key points
 
 
 ---------------------------------------------------------------------------------
-Anonymous Functions / Function Literals / Lambda Expression
+Anonymous-Functions / Function-Literals / Lambda-Expression
 ---------------------------------------------------------------------------------
 
 
@@ -316,25 +336,37 @@ Anonymous Functions / Function Literals / Lambda Expression
     val l = 5:Long        
 
 
-
-     //Compare it with standard def syntax for a Scala function
+    // Named Function
     def functionName ([<parameterName> :<type> [, ....]]) : [return type] = {
         <function body> 
         return [expr]
     }          
+    functionName()
     
-    is same as 
+    //Anonymous Function
+   val af= ([<parameterName> :<type> [, ....]])  =>  {   
+                <function body> 
+                return [expr] 
+            } : [return type]
 
-    ([<parameterName> :<type> [, ....]])  =>  {   
-        <function body> 
-        return [expr] 
-    } : [return type]
+    af();
+
+    why/where we need Lambdas?
+
+        --> create & pass/return function one time any-where in code, prefer this type function
 
 
     val f=(x:Int)=>{x+5}
     val f=(x:Int)=>{x+5}:Int
-
+    // or
     val f:Int=>Int=(x:Int)=>{x+5} 
+    val f:<function-type>=<function>
+    val f=(x:Int)=>{x+5} 
+
+
+    Lambda syntax
+
+    val v = (params) => <body>
 
 
 
@@ -351,20 +383,18 @@ Anonymous Functions / Function Literals / Lambda Expression
     myFun(5,"-") 
     //should return -5-  
 
-
-
-
-
     Soluation:
 
     val myFun:(Int, String) => String = (x:Int, s:String) => { s + x + s }:String      
-    //
-    val myFun = (x:Int, s:String) => { s + x + s }
+    val myFun = (x:Int, s:String) => { s + x + s }:String    
+    val myFun = (x:Int, s:String) => { s + x + s }      
+    val myFun = (x:Int, s:String) =>  s + x + s 
+    val myFun = (x:Int, s:String) =>  x + s 
 
 
 
 
-    Why do we need Scala function literal?
+    Why do we need Scala function-literal / Lambda?
 
 
      - pass it to a higher order functions
@@ -455,6 +485,7 @@ Scala - Higher Order Functions
 // #1
 
     def intDecorator(x:Int,f:(Int)=>String)=f(x)
+
     intDecorator(5,(y:Int)=>"["+y+"]")
 
     try,
@@ -469,7 +500,8 @@ Scala - Higher Order Functions
 
     val hiSomeone=greetSomeone("Hi")
     hiSomeone("Nag")
-    greetSomeone("Hi")("Nag");
+    // or
+    greetSomeone("Hi")("Nag");  // function currying
 
 
 
@@ -519,6 +551,8 @@ doSomething(s="Hi There!", f = x =>println("[" + x + "]"))
 
 def doSomething(f: String  => Unit=println, s:String) = f(s)   
 doSomething(s="Hi There!")  
+
+
 
 
 

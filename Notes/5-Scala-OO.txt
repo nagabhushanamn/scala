@@ -1,9 +1,107 @@
 
 
 
+
+
+
+
+
+----------------------------------------------------------------------
+
+what is object ?
+
+    - state    ==> data,info,attr,prop
+    - behavior ==> func,method,oprn,work,..
+    - identity ==> addr,loc,reference,...
+
+    object ==> sbi
+
+how to create similar objects ?
+
+
+    ==> will have common state-defintion
+    ==> will have common behav
+
+    we need obj's template/  ==> class
+
+
+what is class ?
+
+    ==> blueprint/description/state & behav of similar objects
+
+
+class  ---> instances(s)
+
+----------------------------------------------------------------------
+OO concepts
+----------------------------------------------------------------------
+
+   types of obects
+
+   - dependent
+   - dependency
+
+---------------------------------------------------------------------------
+  1. Interface/Abstraction
+        why we need ?
+            -> easy to use/learn by dependent
+            -> loose-coupling b.w dependent & dependency
+  2. Implementation/Encapsulation
+        why we need ?
+        -> hide complexity to dependent
+  3. Inheritance
+        why we need?
+        -> to re-use common state & behav from generalized-class(super) to specialized-class(sub) objects  
+  4. Polymorphism 
+        why we need ?
+        -> can re-use same object on different strategy , with we can produce objects
+   ---------------------------------------------------------------------------
+
+   why OO ?
+
+    -> maps the real-world concepts
+    -> we can organize the things very well on different objects with data & behav
+    -> provide clear data/behav abstraction by Encapsulating many things
+
+------------------------------------------------------------------------
+
+
+
+class & objects
+---------------------
+
+
+syntax of class
+-----------------
+
+in java-language
+
+
+   class Name{
+       //1. state/data ==> variables
+       //2. constructor ==> obj creation logic
+       //3. methods
+       //4. inner types  
+   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //-------------------------------------------------------------------
 // scala OO
 //-------------------------------------------------------------------
+
+
 
 ---------------------------------------------------------------------
 - class
@@ -63,7 +161,7 @@ c.name = "XYZ Corp"
 
  e.g
 
-class JCircle{
+class SCircle{
     //Private field
     private var radius = 0
     //Constructor
@@ -88,6 +186,8 @@ Java-style                  scala-style
 jc.getRadius()              c.radius
 
 js.setRadius(15)            c.radius=15 
+
+
 
 
 

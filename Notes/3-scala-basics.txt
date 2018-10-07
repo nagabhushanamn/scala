@@ -701,7 +701,11 @@ val s = x match {
     case 3 => "Case Three"
     case _ => "Case Default Case"
     }
+
 println(s)          
+
+
+
 
 
 -------------------------------------------------------------------------------
@@ -745,7 +749,7 @@ Make sure the file is closed at the end.
 
 
 
-    withTextFile( fileLocation ) map ( doThisWork )                                           
+    withTextFile( fileLocation ) map ( doThisWork )  //  ....                                         
     
     repeat( doThisWork ) until ( condition )                                          
 
@@ -782,9 +786,15 @@ For Comprehension
 -------------------------------------------------------------------------------
 
 
+syntax
+----------
+
+//way-1
 for ( seq ) yield { expr } 
 
+//way-2
 for ( seq ) { expr }   
+
 
 for ( i <- 1 to 10 ) {
     statement-1;
@@ -808,7 +818,8 @@ for ( country <- List("India","USA","China","Japan") ) {
     }
 }    
 // or
-countries.foreach{ country =>
+val countries=List("India","USA","China","Japan");
+countries.foreach { country =>
     country match {
         case "India"   =>println("Delhi")
         case "USA"     =>println("Washington D.C.")
@@ -843,7 +854,8 @@ val capitals = for ( country <-  countries ) yield {
 }         
 
 
-for (i <- 1 to 3; j <- 1 to 2) println (s"i=$i  j=$j")
+for (i <- 1 to 3; 
+     j <- 1 to 2) println (s"i=$i  j=$j")
 
 for {   i <- 1 to 3 
         j <- 1 to 2; if(j%2==0)
@@ -853,6 +865,21 @@ for {   i <- 1 to 3
 
 
 
+------------------------------------------
+
+
+in other programming languages
+
+
+    - if, while, do-while , for   ==> statements
+
+in scala
+
+    ==> recommended appriach is, use if,for controls as expressions
+
+    ===> avoid usinf while,d-while, instead use tail-recursions
+
+------------------------------------------
 
 
 

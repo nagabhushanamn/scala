@@ -1,0 +1,544 @@
+
+
+
+//-------------------------------------------------------------------
+// scala OO
+//-------------------------------------------------------------------
+
+---------------------------------------------------------------------
+- class
+---------------------------------------------------------------------
+
+java-style
+----------
+
+class JCustomer{
+    //Private properties
+    private var custID:Int = 0
+    private var custName:String = null
+    
+    //Public constructor
+    def this(id:Int, name:String) {
+        this()
+        this.custID = id   
+        this.custName = name
+    }
+    //Public getter 
+    def getID() = custID
+    def getName() = custName
+    
+    //Public setter  
+    def setID(nID:Int) =  custID = nID
+    def setName(nName:String) =  custName = nName
+
+}       
+
+                               
+val c = new JCustomer(101,"XYZ Corp")
+//When you want to read the private field, you will call a getter method.
+c.getID()
+//When you want to modify the private field, you will call a setter method. 
+c.setName("XYZ Corporation")
+c.getName()               
+
+
+
+scala-style
+------------
+
+
+class Customer(var id:Int, var name:String)  
+
+                             
+val c = new Customer(101,"XYZ Corp")
+//But when you want to read the members variables, instead of calling a getter method, you will use them directly.
+c.id
+c.name
+//There is no need to call a getID and getName methods. 
+//You don't even need the set methods as well. You can directly modify the members.
+c.id = 101
+c.name = "XYZ Corp"    
+
+
+
+ e.g
+
+class JCircle{
+    //Private field
+    private var radius = 0
+    //Constructor
+    def this(r:Int) {
+        this()
+        setRadius(r)
+    }
+    //Set method with data validation
+    def setRadius(r:Int):Unit =  {
+        if(r < 0) throw new Exception("-ive not allowed") else radius=r
+    }
+    //Get method
+    def getRadius() = radius
+}                 
+
+
+
+----------------------------------------
+Java-style                  scala-style
+----------------------------------------
+
+jc.getRadius()              c.radius
+
+js.setRadius(15)            c.radius=15 
+
+
+
+class Circle{
+    //Private field
+    private var _pradius = 0
+    //Constructor
+    def this(r:Int) {
+        this()
+        radius=r
+    }
+    //Set method with data validation
+    def radius_=(r:Int) = {
+        if(r < 0) throw new Exception("-ive not allowed") else _pradius=r
+    }
+    //Get method
+    def radius  = _pradius
+}                    
+
+val c=new Circle(15);
+c.radius=-15
+
+
+------------------------------------------------------------------------
+
+class Circle{}
+
+abstract class Circle{}
+
+private class Cicrcle{}
+
+protected class Circle{}
+
+public class Cicrcle{}  // error  i.e by default every class is public
+
+
+- A Scala class is public by default.
+- public access modifier is not allowed
+- scala source file can contain multiple public classes
+- you don't need to match the source file name with the public class name
+
+
+
+class Circle{
+    var radius=0;
+    def draw = { println("Drawing the circle of radius " + radius) }
+
+}
+val c=new Circle
+
+                            
+c.radius
+c.radius_=(5)
+//But no one calls the writer using this notation. We can simply call it like this.
+c.radius=5        
+
+
+//  
+
+class Circle { 
+    private varp_radius = 0
+    //Reader
+    def radius = p_radius
+    //Writer
+    def radius_=(r:Int) = {
+        if(r < 0) throw new Exception("-ive not allowed") else p_radius=r
+    }  
+    def setRadius(r:Int) = {
+        if(r < 0) throw new Exception("-ive not allowed") else p_radius=r
+    }
+}
+val c = new Circle   
+
+
+//
+
+class Circle { 
+    val radius = 0
+}       
+
+
+
+class Circle { 
+    private val radius = 0
+}       
+
+
+
+
+------------------------------------------------------------------------
+constructor
+------------------------------------------------------------------------
+
+
+// default constructor
+
+
+class Circle { 
+    var radius = 0
+}    
+
+val c = new Circle()   
+
+
+
+//---------------------------------------------------------
+
+Java-style
+                           
+    public class Circle{
+        //Instance variable
+        private int radius; 
+                                
+        //Constructor
+        public Circle(intnewRadius) {
+            this.radius = newRadius;
+        }
+                                
+        //Get and Set methods
+        public intgetRadius() {
+            return this.radius;
+        }
+        public void setRadius(int r) {
+            this.radius = r;
+        }
+    }              
+
+    |
+    |
+    |
+    V
+
+
+     class Circle {
+        //Instance variable
+        int radius; 
+                                    
+        //Constructor
+        Circle(intnewRadius) {
+            this.radius = newRadius;
+        }
+    }         
+
+//---------------------------------------------------------
+
+    |
+    |
+    |
+    V
+      
+                                
+    class Circle(var newRadius:Int) { 
+        var radius = newRadius
+    } 
+
+    |
+    |
+    |
+    V
+
+    class Circle(var radius:Int) 
+
+    class Circle(val radius:Int)
+
+    class Circle(private val radius:Int)  
+
+    class Circle(radius:Int)   
+
+
+---------------------------------------------------
+    Auxiliary Constructor
+---------------------------------------------------
+
+  class Box(varwidth:Int, varheight:Int, vardepth:Int){
+        //Auxiliary constructors
+        def this()= {
+            this(1,1,1);
+        }
+        def this(w:Int, h:Int){
+            this(w,h,1);
+        }
+        def showBox = println(s"width = $width height= $height depth=$depth")
+   }                     
+
+
+                                
+    val b = new Box()
+    b.showBox
+    val b = new Box(5,3)
+    b.showBox
+    val b = new Box(5,3,2)
+    b.showBox             
+
+-------------------------------------------------------------------------     
+
+
+
+----------------------------------------
+Objects & Apply Methods
+----------------------------------------
+
+We often see two terms.
+
+ - Instance of a class
+ - Object
+
+
+
+Instance of a class?
+                            
+    val smallCircle  = new Circle(5)
+    val mediumCircle = new Circle(25)
+    val largeCircle  = new Circle(100) 
+
+
+What is Scala Object?
+
+    A Scala object is a special type of class that can have one and only one instance.
+
+    A Scala object represents a singleton class. 
+    And instead of calling them a class, we call them an Object. 
+
+    Singleton-object
+    ------------------
+    
+    When do we use Scala Objects?
+    How to create a Scala Object?
+
+
+    e.g                
+    Console.println(s"${Console.RED}Ha Ha ${Console.RESET} He He..")   
+
+
+
+    e.g
+
+    import java.util.Calendar
+    import java.text.SimpleDateFormat
+    object StaticDateTime {   
+        private valdateFormat = "EEEE, d-MMM-yyyy"
+        private valtimeFormat = "K:m aa z(ZZ)"
+        def currentDate:String = getCurrentDateTime(dateFormat)
+        def currentTime:String = getCurrentDateTime(timeFormat)  
+        def dateAdd(date:String, days:Int):String = {
+            val df = new SimpleDateFormat(dateFormat)
+            val dt = df.parse(date)
+            val cal = Calendar.getInstance()
+            cal.setTime(dt)
+            cal.add(Calendar.DATE, days)
+            df.format(cal.getTime())    
+        }    
+        private def getCurrentDateTime(format: String): String = {
+            val df = new SimpleDateFormat(format)
+            val cal = Calendar.getInstance()
+            df.format(cal.getTime())
+        }
+    }              
+
+
+              
+    //How to Use Scala Object Methods
+    StaticDateTime.currentDate
+    StaticDateTime.currentTime
+    StaticDateTime.dateAdd(StaticDateTime.currentDate,5
+
+
+
+
+
+    Limitations of Scala Object:
+
+    Objects can extend or inherit Classes, but the opposite is not allowed. 
+    You cannot extend an object to create a class or another object.
+
+    Objects cannot have a public constructor. And that makes sense as well.
+    Because they are singleton objects and you don't want to use them as a blueprint to instantiate new objects.
+
+    Scala will instantiate the object on their first use. Next time onwards, 
+    It uses the same instance. If you are not using the object, Scala doesn't instantiate it.
+    
+
+
+    ==> Scala Object for Singleton pattern
+
+
+
+
+   e.g
+
+    //Create a configuration file in current directory
+    //File Name - config.properties
+    //Paste below content
+    dbpassword=dont-tell-password
+    database=localhost
+    dbuser=prashant
+                                    
+    //Code Example
+    import java.util._
+    import java.io._
+    object appConfig{
+        private val prop = new Properties();
+        prop.load(new FileInputStream("config.properties"));   
+        def config = prop
+    }
+
+    //How to use it
+    appConfig.config.getProperty("dbuser")
+    appConfig.config.getProperty("database")    
+
+
+    ----------------------------------------------------------------------
+    Scala Apply Method
+    ----------------------------------------------------------------------
+
+
+    object appConfig{
+        private val prop = new Properties();
+        prop.load(new FileInputStream("config.properties"));   
+        def apply(s:String) = prop.getProperty(s)
+    }
+    //How to use it
+    appConfig("dbuser")
+    appConfig("database")   
+
+
+    appConfig.apply("dbuser")  
+    appConfig("dbuser")    
+
+
+    valmyList = List("India", "America", "Japan", "China")
+    myList(0)
+    myList(2)                                       
+                 
+
+    myList.apply(2)      
+
+
+
+    ----------------------------------------------------------------------
+    Scala Companion Objects
+    ----------------------------------------------------------------------
+
+    What is a companion object?
+
+    If we define a Scala class and a Scala object with the same name in the same source file,
+    they become a companion of each other. 
+
+    There are just two rules.
+
+        -Class name and the Object name are same.
+        -The class and the object, both reside in the same source file.
+
+
+    Why do we need companion objects?
+
+    There are two main reasons.
+
+        -Separation of concerns using a Companion
+        -Implementing Factory Method or a Builder pattern
+
+
+
+    e.g
+
+                                 
+    class Graph(path:String){        
+        println("Load the Graph from file")   
+        def numEdges = 506
+        def numVertices = 305
+        def persist(storageLevel: Int) = println("Returns a new persisted Graph")
+    }
+
+                           
+    object StorageLevel{
+        val DISK_ONLY = 0
+        val MEMORY_ONLY = 1
+        val MEMORY_ONLY_COMPRESSED = 2
+        val MEMORY_AND_DISK = 3
+        val MEMORY_AND_DISK_COMPRESSED = 4  
+    }                 
+                                        
+    val g = new Graph("file_location")
+    g.persist(0)
+    g.persist(StorageLevel.MEMORY_ONLY)  
+
+
+    //
+
+
+
+
+    object Graph{
+        val DISK_ONLY = 0
+        val MEMORY_ONLY = 1
+        val MEMORY_ONLY_COMPRESSED = 2
+        val MEMORY_AND_DISK = 3
+        val MEMORY_AND_DISK_COMPRESSED = 4   
+    }               
+
+    val g = new Graph("file_location")
+    g.persist(Graph.MEMORY_ONLY)   
+
+
+
+
+    Apply method in Companions:
+                              
+    class Graph private(path:String){
+        println("Load the Graph from file")   
+        def numEdges = 506
+        def numVertices = 305
+        def persist(storageLevel: Int) = println("Returns a new Graph")
+    }
+    object Graph{
+        val DISK_ONLY = 0
+        val MEMORY_ONLY = 1
+        val MEMORY_ONLY_COMPRESSED = 2
+        val MEMORY_AND_DISK = 3
+        val MEMORY_AND_DISK_COMPRESSED = 4   
+        def apply(path:String) = new Graph(path)
+    }                                        
+
+    al g = Graph("file_location")  
+
+
+
+
+    // e.g
+
+     val myList = List("India", "America", "Japan", "China")   
+     myList(0)     
+
+     
+
+
+
+
+
+
+
+
+            
+
+
+
+
+
+
+
+
+
+
+
+

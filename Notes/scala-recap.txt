@@ -1,0 +1,115 @@
+
+
+
+-----------------------------------------------------------------------------
+The name 'Scala' stands for “scalable language.”
+-----------------------------------------------------------------------------
+
+    -  A language that grows on you
+
+        var capital = Map("US" -> "Washington", "France" -> "Paris")
+        capital += ("Japan" -> "Tokyo")
+        println(capital("France"))
+
+    - Growing new types
+
+        def factorial(x: BigInt): BigInt =
+        if (x == 0) 1 else x * factorial(x - 1)    result: 265252859812191058636308480000000
+        
+        factorial(30);
+
+
+    - Growing new control constructs
+
+        in Akka F.W,
+
+            Actor-1:==> thread
+            recipient ! msg    "! ==> send"
+
+
+            Actor-2: ( recipient)
+            receive {
+                case Email => ... // handle email
+                case SMS => ... // handle sms
+                // ...
+            }    
+
+-----------------------------------------------------------------------------
+
+    What makes Scala scalable?
+
+
+    - Scala is object-oriented
+    - Scala is functional
+-----------------------------------------------------------------------------    
+
+
+    Why Scala?
+
+        - Scala is compatible
+        - Scala is concise
+        - Scala is high-level
+        - Scala is statically typed
+
+
+-------------------------------------------------------------------------    
+dev-environment
+-------------------------------------------------------------------------    
+
+    -> install JDK  / SDK
+    -> install IDE/Editor   like intellij-idea 
+    -> SBT  ==> build tool
+
+
+
+-------------------------------------------------------------------------        
+First Steps in Scala
+-------------------------------------------------------------------------        
+
+Level-1:  ==> syntax
+
+    Step 1. Learn to use the Scala interpreter  / worksheet / any good Editor
+
+    step-2. data-types  & type-inference
+
+    step-3. operators
+
+    step-4. functions to write Functional Programming
+
+            - Named-function
+            - Anonymous-function / Function-literal / lambda
+            - place-holder syntax on function
+            - partially-applied function
+            - Variable arguments, Named & default params
+
+    step-5. OOP
+
+level-2:  ==> data
+
+step-6: collections/ data-structures
+
+level-3:  ==> performance
+
+step-7: concurrent/async applications
+
+---------------------------------------------------------------
+
+
+
+
+
+--------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+

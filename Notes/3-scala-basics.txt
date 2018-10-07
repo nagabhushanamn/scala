@@ -553,9 +553,6 @@ def doSomething(f: String  => Unit=println, s:String) = f(s)
 doSomething(s="Hi There!")  
 
 
-
-
-
 -------------------------------------------------------------------------------
 Scala - Partially Applied Functions & Function currying
 -------------------------------------------------------------------------------

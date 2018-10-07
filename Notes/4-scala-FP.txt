@@ -2,6 +2,7 @@
 
 ------------------------------------------------------------------------------
 what is FP?
+------------------------------------------------------------------------------
 
     1. FP is about writing software applications using only pure functions.
     2. When writing FP code you only use immutable values — val fields in Scala.
@@ -382,11 +383,12 @@ Why Immutable?
            if (n <= 0)  
                 f
             else  
-                tFactorial(n-1, n*f)      
+                tFactorial(n-1, n*f)    // (4,5)  //  (3,20)   
         }    
-        return  tFactorial(i,1)
+        return  tFactorial(i,1)  // 5,1
     }
 
+    Factorial(5);
 
 ------------------------------------------------------------------------------
 Scala Statements vs Expressions

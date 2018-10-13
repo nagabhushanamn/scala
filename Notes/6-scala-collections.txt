@@ -1,0 +1,5 @@
+
+
+
+Ref: https://docs.scala-lang.org/resources/images/tour/collections-diagram.svg
+

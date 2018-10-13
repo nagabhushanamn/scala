@@ -1,0 +1,34 @@
+
+
+bank-app
+-------------
+use-case : txr(amount,fromAcc,toAcc)
+---------------------------------------------------------------------
+step-1:
+model  ==> business-data
+
+1. Account
+       - num
+       - balance
+
+---------------------------------------------------------------------
+
+step-2:
+
+ layer(s) ==> logical separation of code
+
+ 1. data/repository layer   ==> persisting logic
+
+      A. AccountRepository
+
+ 2. service/business layer  ==> processing logic
+
+      B. TxrService
+
+
+---------------------------------------------------------------------
+
+
+
+
+

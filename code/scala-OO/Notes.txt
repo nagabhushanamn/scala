@@ -1,0 +1,41 @@
+
+
+---------------------------------------------------------
+ literal style objects
+---------------------------------------------------------
+
+   ==> object which we can create without 'new' keyword
+
+   e.g all values are literal-objects
+
+
+    val v=12;  ==> Int object
+
+
+---------------------------------------------------------
+
+in scala, we can create object without 'class', using 'object' keyword
+
+ object name{
+    variables/values
+    method(s)
+   }
+
+
+
+---------------------------------------------------------
+
+in scala, we can create object with 'class'
+
+
+class Person
+
+val p=new Person
+
+---------------------------------------------------------
+
+
+
+
+
+

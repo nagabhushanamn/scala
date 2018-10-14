@@ -1,0 +1,89 @@
+
+
+
+data structures
+------------------
+
+    => way of organzing memory to do CRUDSS
+
+
+
+   1- primary   ==> single-data-element e.g val v:Int=12
+
+   2- secondary ==> multi-data-elements
+
+
+         1. linear/order
+
+             a. array
+             b. linkedlist
+             c. stack
+             d. queue
+             .....
+
+         2. non-linear
+
+            a. tree
+            b. graph
+            ....
+
+   -------------------------------------------------------------
+
+
+   in most programming languages, we need implement secondary data structures manually with algorthms
+
+
+   analysis
+   ---------
+
+    => space complexity
+    => time complexity
+
+   ---------------------------------------------------------------
+
+
+   Java language
+
+
+    --> collection/data-structures F.W    ( java.util.* )
+
+
+    Scala language
+
+     --> powerful collection F.W in scala on top of collection F.W
+
+   --------------------------------------------------------------------
+
+
+
+   Introduction
+
+
+    1. Seq
+
+        -> indexed/linear  i.e  ordered output
+        -> can hold duplicate elements
+
+
+    2. Set
+
+        -> unique data-elements
+        -> un-ordered/ordered
+
+
+    3. Map
+
+        user-defined key +  value-object
+
+    --------------------------------------------------------------------------------
+
+                 
+
+
+
+
+
+
+
+
+

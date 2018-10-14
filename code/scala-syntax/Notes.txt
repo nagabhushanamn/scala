@@ -1,0 +1,145 @@
+
+-------------------------------------------------
+scala-syntax
+-------------------------------------------------
+1.scala-project
+-------------------------------------------------
+        proj
+        |
+        |------ p1  ( .scala / .class )
+        |
+        |------ p2
+        |  |
+        |  |---- p21
+        |
+        |
+
+ ------------------------------------------------
+ 2. scala file - syntax
+ ------------------------------------------------
+
+
+  Name.scala
+ -------------------------------------------------
+ | // package declaration
+ |
+ | // object
+ |
+ | // class
+ |
+ | // trait
+ |-------------------------------------------------
+
+
+ -----------------------------------------------------
+ 3. Naming-conventions
+ -----------------------------------------------------
+
+ keywords  ==> lower-case
+ package   ==> lower-case
+
+ Types ( class , trait )  ==> pascal-case  ( A____B___ ) e.g ScalaEmployee
+ values/variables/methods/functions  ==>  came-case  ( ____A___B___ ) e,g name, empName, add, addNumbers,..
+
+
+ ------------------------------------------------------------
+ 4. package/namespace - syntax
+ ------------------------------------------------------------
+
+ why we need ?
+
+ --> to avoid type-name collisions
+ --> for better maintenance i.e grouping related classes,objects,traits into one namespace
+
+
+ syntax:
+
+    package root;
+    package root.sub1.sub2;
+
+
+    general guideline while defining packages in java/scala program ?
+
+    e.g
+
+        Employee class ==> emp ==> em ==> comp ==> org/com/edu/gov
+
+        e.g
+
+        package c-type.c-name.p-name.m-name;
+
+        package com.cts.em.emp;
+
+        class Employee{}
+
+
+  ------------------------------------------------------------
+
+
+
+ ------------------------------------------------------------
+ 4. import statements - syntax
+ ------------------------------------------------------------
+
+
+
+     why we need ?
+
+     => to access any type(s) from different package to current-scope
+
+
+     imp-note :
+          for any type , if we use fully-qualified names, we don't need import statements
+          but code looks more verbose
+
+
+  ----------------------------------------------------------------
+
+  // 5. access specifiers  - syntax
+
+  ----------------------------------------------------------------
+
+        why we need ?
+
+        ==> controlling( who can access ) access to object/class members
+
+        how ?
+
+        ==> public,protected,private
+
+  ------------------------------------------------------------------------
+  //6 . object
+------------------------------------------------------------------------
+
+------------------------------------------------------------------------
+  //7 . class
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+  //8 . traits
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+  //9 . methods/functions
+------------------------------------------------------------------------
+
+------------------------------------------------------------------------
+  //10 . anonymous-functions / Lambda / function-literal
+------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
